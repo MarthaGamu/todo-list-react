@@ -6,6 +6,11 @@ const ListTodoWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 `
+
+const StyledHeading = styled.h1`
+	color: black;
+	text-align: center;
+`
 const ListTodoContainer = styled.div`
 	margin-top: 50px;
 	width: 80vw;
@@ -21,7 +26,7 @@ const StyledForm = styled.form`
 
 const StyledInput = styled.input`
 	width: 300px;
-	height: 2rem;
+	height: 2.5rem;
 	text-transform: uppercase;
 
 	&:focus {
@@ -43,10 +48,17 @@ const StyledButton = styled.button`
 `
 
 export default function App() {
-	const [todo, setTodo] = useState([{ text: '', complete: false, id: 1 }])
+
+const initialState = {
+	text: '',
+	complete: '',
+  };
+  
+	const [todo, setTodo] = useState(initialState)
 	const [todos, setTodos] = useState([])
 
 	console.log('todo', todo)
+	console.log('Todos', todos)
 
 	const onChangeHandler = (e) => {
 		const idValue = Math.random()
@@ -72,21 +84,27 @@ export default function App() {
 		setTodos(filtering)
 	}
 
-	const updateHandler = (e) => {
+	const AddHandler = (e) => {
 		e.preventDefault()
+		if(todo.text === '') return
+		if(todos.length === 6) alert('Please complete at least one todo in the list')
 		setTodos(todos.concat(todo))
-		setTodo([{ ...todo, text: '' }])
+		setTodo(initialState)	
 	}
+
 	return (
 		<ListTodoWrapper>
 			<ListTodoContainer>
-				<StyledForm onSubmit={updateHandler}>
+				<StyledHeading>TODO LIST...</StyledHeading>
+				<StyledForm onSubmit={AddHandler}>
 					<StyledInput
+						aria-label='Add a todo list'
 						value={todo.text}
 						onChange={onChangeHandler}
-						placeholder='Search Item'
+						placeholder='Add Item'
+						name='add-item'
 					/>
-					<StyledButton onClick={updateHandler}>ADD</StyledButton>
+					<StyledButton onClick={AddHandler}>ADD ITEM</StyledButton>
 				</StyledForm>
 				<List
 					todos={todos}
