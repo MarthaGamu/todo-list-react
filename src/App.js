@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import List from './components/List/List'
 import * as  Styled from './styles/App.style'
+import uuid from 'react-uuid'
 
 export default function App() {
 
@@ -13,9 +14,9 @@ const initialState = {
 	const [todos, setTodos] = useState([])
 
 	const onChangeHandler = (e) => {
-		const idValue = Math.random()
-		setTodo({ text: e.target.value, id: idValue, complete: false })
+		setTodo({ text: e.target.value, id: uuid(), complete: false })
 	}
+
 	const handleComplete = (id) => {
 		const newState = todos.map((obj) => {
 			if (obj.id === id) {
@@ -34,8 +35,7 @@ const initialState = {
 
 	const AddHandler = (e) => {
 		e.preventDefault()
-		if(todo.text === '') return
-		if(todos.length === 6) alert('Please complete at least one todo in the list')
+		if(todo.text === '') return alert('Enter text in the input field first')
 		setTodos(todos.concat(todo))
 		setTodo(initialState)	
 	}
@@ -45,9 +45,9 @@ const initialState = {
 			<Styled.ListTodoContainer>
 				<Styled.Heading>TODO LIST...</Styled.Heading>
 				<Styled.Form onSubmit={AddHandler}>
-					<Styled.Label for="name">Add a todo list App </Styled.Label>
+					<Styled.Label htmlFor="addItem">Add a todo list App </Styled.Label>
 						<Styled.Input
-							id="name"
+							id="addItem"
 							value={todo.text}
 							onChange={onChangeHandler}
 							placeholder='Add Item'
