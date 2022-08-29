@@ -35,7 +35,7 @@ const initialState = {
 
 	const AddHandler = (e) => {
 		e.preventDefault()
-		if(todo.text === '') return alert('Enter text in the input field first')
+		if(todo.text === '') return alert('Please enter text in the input field first')
 		setTodos(todos.concat(todo))
 		setTodo(initialState)	
 	}
