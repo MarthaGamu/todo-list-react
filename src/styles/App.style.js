@@ -2,32 +2,50 @@ import styled from 'styled-components'
 
 export const ListTodoWrapper = styled.div`
 	display: flex;
-	justify-content: center;
+	width: 100vw;	
 `
 
 export const Label = styled.label`
-	display: none;
+	font-weight: 400;
+	display: block;
+
+	&:after {
+		content: '*';
+		color: red;
+		font-size: 20px;
+	}
+`
+
+export const Span = styled.span`
+	weight: 200;
+	font-size: 12px;
+`
+ 
+export const LabelWrapper = styled.div`
+    width: 100%;
+	display: flex;
+	justify-content: space-between;
 `
 
 export const Heading = styled.h1`
-	color: black;
+ 	color: black;
 	text-align: center;
+	
 `
 export const ListTodoContainer = styled.div`
 	margin-top: 50px;
-	width: 80vw;
+	width: 500px;
 	background: white;
-	text-align: center;
 	border-radius: 6px;
+	margin:0 auto;
 `
 
 export const Form = styled.form`
 	padding-top: 20px;
-	margin: 0 auto;
 `
 
 export const Input = styled.input`
-	width: 300px;
+	width: 500px;
 	height: 2.5rem;
 	text-transform: uppercase;
 
@@ -38,6 +56,8 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button`
+    width: 100%;
+	margin-top: 10px;
 	padding: 1rem 1rem;
 	border-radius: 6px;
 	background: black;

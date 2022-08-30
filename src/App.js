@@ -34,8 +34,8 @@ const initialState = {
 	}
 
 	const AddHandler = (e) => {
+		if(todo.text === '') return 
 		e.preventDefault()
-		if(todo.text === '') return alert('Please enter text in the input field first')
 		setTodos(todos.concat(todo))
 		setTodo(initialState)	
 	}
@@ -45,13 +45,16 @@ const initialState = {
 			<Styled.ListTodoContainer>
 				<Styled.Heading>TODO LIST...</Styled.Heading>
 				<Styled.Form onSubmit={AddHandler}>
-					<Styled.Label htmlFor="addItem">Add a todo list App </Styled.Label>
+					<Styled.LabelWrapper>
+						<Styled.Label htmlFor="addItem">Add todo </Styled.Label>
+						<Styled.Span>required</Styled.Span>
+					</Styled.LabelWrapper>
 						<Styled.Input
 							id="addItem"
 							value={todo.text}
 							onChange={onChangeHandler}
-							placeholder='Add Item'
 							name='add-item'
+							required
 						/>
 					<Styled.Button onClick={AddHandler}>ADD ITEM</Styled.Button>
 				</Styled.Form>
