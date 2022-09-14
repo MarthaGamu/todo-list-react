@@ -20,7 +20,7 @@ export const Span = styled.span`
 	weight: 200;
 	font-size: 12px;
 `
- 
+
 export const LabelWrapper = styled.div`
     width: 100%;
 	display: flex;
